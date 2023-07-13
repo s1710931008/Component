@@ -2,6 +2,15 @@
   "Component": [
     {
       "Mouser_Number": "零件編號",
+      "type": "電容",
+      "format": "規格 ",
+      "Voltage": "電壓",
+      "Case_Code_in": "尺寸",
+      "Tolerance": "2%",
+      "Quantity": 100
+    },
+    {
+      "Mouser_Number": "零件編號",
       "type": "電阻",
       "format": "規格",
       "Voltage": "電壓",
