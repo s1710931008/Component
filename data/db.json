@@ -1,0 +1,31 @@
+{
+	"Component":[
+					{
+					"Mouser_Number":"81-GCJ188R71C104KA1D",
+					"type":"電容",
+					"format":"100nF",
+					"Voltage":"6.3 VDC",
+					"Case_Code_in":"0402",
+					"Tolerance":"2%",
+					"Quantity":100,
+					"Use":[
+							{"SSC":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"},
+							{"SubG":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"}
+						  ]
+
+					},
+					{
+					"Mouser_Number":"GRM1555C1H120JA01D",
+					"type":"電容",
+					"format":"12pF",
+					"Voltage":"50 VDC",
+					"Case_Code_in":"0402",
+					"Tolerance":"1%",
+					"Quantity":100,
+					"Use":[
+							{"SSC":"C17 C18 C31 C35"},
+							{"SubG":"C17 C18 C31 C35"}
+						  ]
+					}
+				]
+}
