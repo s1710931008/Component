@@ -7,8 +7,12 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(__dirname+'/../data/db.json')
 const db = low(adapter)
 
-
-
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  let str = db.get('Component').value();
+  console.log(str[0].Mouser_Number)
+  res.render('index',{str})
+});
 /* GET home page. */
 router.get('/list', function(req, res, next) {
   const id = req.params.id;

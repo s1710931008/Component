@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= jstr %></title>
+    <title>index</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
@@ -11,73 +11,30 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col" colspan="2" class="table-primary">電子件規格</th>
+          <th scope="col" class="table-primary">電子料號</th>
+          <th scope="col" class="table-primary">類型</th>
+          <th scope="col" class="table-primary">規格</th>
+          <th scope="col" class="table-primary">Voltage</th>
+          <th scope="col" class="table-primary">Case_Code_in</th>
+          <th scope="col" class="table-primary">Tolerance</th>
+          <th scope="col" class="table-primary">庫存</th>
         </tr>
       </thead>
       <tbody>
-        <% Object.keys(str).forEach(key => {
-          if(key!=="Use"){  %>
+        <% str.forEach(itmes => { %>
         <tr>
-          <th scope="row"><%= key %></th>
-          <td><%= str[key] %></td>
+          <td><%= itmes.Mouser_Number %></td>
+          <td><%= itmes.type %></td>
+          <td><%= itmes.format %></td>
+          <td><%= itmes.Voltage %></td>
+          <td><%= itmes.Case_Code_in %></td>
+          <td><%= itmes.Tolerance %></td>
+          <td><%= itmes.Quantity %></td>
         </tr>
-      <% } 
-   
-      %>
+        <% })%>
       </tbody>
 
-
-        <% if(key==="Use"){ %>
-          <thead>
-            <tr>
-              <th scope="col" colspan="2" class="table-warning">電子件用途</th>
-            </tr>
-          </thead>
-          <tbody>
-            <thead>
-              <tr>
-                <th scope="col" class="table-success">產品名</th>
-                <th scope="col" class="table-success">PCB 位置</th>
-              </tr>
-            </thead>
-          <%
-            sss=str[key] 
-             Object.keys(sss).forEach(key => { 
-              ssa=sss[key]
-              Object.keys(ssa).forEach(key => { %>
-
-
-                <tr>
-                  <th scope="row"><%= key %></th>
-                  <td><%= ssa[key] %></td>
-                </tr>
-            <% }) 
-            })
-          }
-        })
-         %>
-
     </table>
-
-    <!-- <h1>電子零件規格</h1>
-    <% Object.keys(str).forEach(key => {
-        if(key!=="Use"){  %>
-      <li><%= key %> => <%= str[key] %></li>
-    <% } %>
-
-    <% if(key==="Use"){ %>
-      <h1>電子零用途</h1>
-      <% sss=str[key] 
-         Object.keys(sss).forEach(key => { 
-          ssa=sss[key]
-          Object.keys(ssa).forEach(key => { %>
-          <li><%= key %> => <%= ssa[key] %></li>
-    
-        <% }) 
-      })
-    }
-  })
-%> -->
 
 
   </body>
