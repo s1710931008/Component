@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-lg-8 col-lg-offset-2">
+            <h2>新增電子零件</h2>
+            <hr />
+            <form method="post" action="/save">
+              <div class="form-group">
+                <label for="item">零件編號</label>
+                <input
+                  name="Mouser_Number"
+                  type="text"
+                  class="form-control"
+                  id="Mouser_Number"
+                />
+              </div>
+              <div class="form-group">
+                <label for="type">類型</label>
+                <select name="type" class="form-control" id="type">
+                  <option value="電容">電容</option>
+                  <option value="電阻">電阻</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="account">規格</label>
+                <input
+                  name="format"
+                  type="text"
+                  class="form-control"
+                  id="format"
+                />
+              </div>
+              <div class="form-group">
+                <label for="account">電壓</label>
+                <input
+                  name="Voltage"
+                  type="text"
+                  class="form-control"
+                  id="Voltage"
+                />
+              </div>
+              <div class="form-group">
+                <label for="account">尺寸</label>
+                <input
+                  name="Case_Code_in"
+                  type="text"
+                  class="form-control"
+                  id="Case_Code_in"
+                />
+              </div>
+              <div class="form-group">
+                <label for="account">Tolerance</label>
+                <input
+                  name="Tolerance"
+                  type="text"
+                  class="form-control"
+                  id="Tolerance"
+                />
+              </div>
+              <div class="form-group">
+                <label for="account">庫存</label>
+                <input
+                  name="Quantity"
+                  type="text"
+                  class="form-control"
+                  id="Quantity"
+                />
+              </div>
+              <hr>
+              <button type="submit" class="btn btn-primary btn-block">新增</button>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

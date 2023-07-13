@@ -44,4 +44,26 @@ router.get('/list', function(req, res, next) {
   res.render('list', { str});
 });
 
+/* 新增 View */
+router.get('/create', function(req, res, next) {
+  res.render('create')
+});
+
+router.post('/save', function(req, res, next) {
+  // let str = req.body
+  let str = {
+    "Mouser_Number": req.body.Mouser_Number,
+    "type": req.body.type,
+    "format": req.body.format,
+    "Voltage": req.body.Voltage,
+    "Case_Code_in": req.body.Case_Code_in,
+    "Tolerance": req.body.Tolerance,
+    "Quantity": Number(req.body.Quantity),
+  }
+  console.log(req.body.type)
+  db.get('Component').unshift(str).write();
+  res.send(str)
+  // res.render('create')
+});
+
 module.exports = router;
