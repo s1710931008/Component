@@ -14,11 +14,11 @@ router.get('/', function(req, res, next) {
   res.render('index',{str})
 });
 /* GET home page. */
-router.get('/list', function(req, res, next) {
+router.get('/list/:id', function(req, res, next) {
   const id = req.params.id;
 
   //取得單筆記錄
-  let str = db.get('Component').find({format:"100nF"}).value();
+  let str = db.get('Component').find({Mouser_Number:id}).value();
   // let str = db.get('Component').find({format:id}).value();
   // const db.get('accounts').unshift({id:id,url,fields, ...req.body}).write();
   // console.log(str);
