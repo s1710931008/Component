@@ -26,6 +26,12 @@ router.get('/list/:id', function(req, res, next) {
   // let kstr = Object.keys(str);
   // let kstr1 = Object.values(str);
 
+  /* 建立用途 */
+  //let old = db.get('posts').find({id:1}).value();
+  //console.log(old.use)
+  //old.use.push({name:'ssc',setting:'C33 C2 C19 C23'});
+
+
 
   console.log("******** 零件規格 ********")
   Object.keys(str).forEach(key => {
