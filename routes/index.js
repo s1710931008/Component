@@ -33,15 +33,18 @@ router.get('/list/:id', function(req, res, next) {
   //old.use.push({name:'ssc',setting:'C33 C2 C19 C23'});
   // let ssid = db.get('use').filter({sid:4}).value();
   // console.log('sid:',ssid)
-
+  console.log("aaa:", str.id);
+  let ssid = db.get('use').filter({sid:str.id}).value();
+  console.log('sid:',ssid)
+  
   Object.values(str).forEach(items => {
-    console.log("aaa:", str.id);
-    let ssid = db.get('use').filter({sid:str.id}).value();
-    console.log('sid:',ssid)
+    // console.log("aaa:", str.id);
+    // let ssid = db.get('use').filter({sid:str.id}).value();
+    // console.log('sid:',ssid)
    
   });
 
-
+/*
   console.log("******** 零件規格 ********")
   Object.keys(str).forEach(key => {
     
@@ -61,7 +64,7 @@ router.get('/list/:id', function(req, res, next) {
     }
 
   });
-
+*/
 
   // console.log(kstr)
   res.render('list', { str});

@@ -41,6 +41,7 @@
       "Quantity": 100
     },
     {
+      "id":5,
       "Mouser_Number": "GRM1555C1H120JA01D",
       "type": "電容",
       "format": "12pF",
