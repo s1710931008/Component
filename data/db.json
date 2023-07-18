@@ -1,6 +1,7 @@
 {
   "Component": [
     {
+      "id":1,
       "Mouser_Number": "1零件編號",
       "type": "電容",
       "format": "規格 ",
@@ -10,6 +11,7 @@
       "Quantity": 100
     },
     {
+      "id":2,
       "Mouser_Number": "零件編號",
       "type": "電阻",
       "format": "規格",
@@ -19,6 +21,7 @@
       "Quantity": 1000
     },
     {
+      "id":3,
       "Mouser_Number": "3",
       "type": "電阻",
       "format": "3",
@@ -28,21 +31,14 @@
       "Quantity": "3"
     },
     {
+      "id":4,
       "Mouser_Number": "81-GCJ188R71C104KA1D",
       "type": "電容",
       "format": "100nF",
       "Voltage": "6.3 VDC",
       "Case_Code_in": "0402",
       "Tolerance": "2%",
-      "Quantity": 100,
-      "Use": [
-        {
-          "SSC": "C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
-        },
-        {
-          "SubG": "C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
-        }
-      ]
+      "Quantity": 100
     },
     {
       "Mouser_Number": "GRM1555C1H120JA01D",
@@ -51,15 +47,15 @@
       "Voltage": "50 VDC",
       "Case_Code_in": "0402",
       "Tolerance": "1%",
-      "Quantity": 100,
-      "Use": [
-        {
-          "SSC": "C17 C18 C31 C35"
-        },
-        {
-          "SubG": "C17 C18 C31 C35"
-        }
-      ]
+      "Quantity": 100
+    }
+  ],
+  "use":[
+    {
+      "id":1,"sid":1,"name":"SSC","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
+    },
+    {
+      "id":2,"sid":1,"name":"SubG","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
     }
   ]
 }
