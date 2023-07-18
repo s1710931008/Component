@@ -52,10 +52,10 @@
   ],
   "use":[
     {
-      "id":1,"sid":1,"name":"SSC","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
+      "id":1,"sid":4,"name":"SSC","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
     },
     {
-      "id":2,"sid":1,"name":"SubG","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
+      "id":2,"sid":4,"name":"SubG","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
     }
   ]
 }

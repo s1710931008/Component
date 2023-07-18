@@ -19,7 +19,7 @@ router.get('/list/:id', function(req, res, next) {
 
   //取得單筆記錄
   let str = db.get('Component').find({Mouser_Number:id}).value();
-  let struse = db.get('Use').find({sid:str.id}).value();
+  
   // let str = db.get('Component').find({format:id}).value();
   // const db.get('accounts').unshift({id:id,url,fields, ...req.body}).write();
   // console.log(str);
@@ -31,10 +31,14 @@ router.get('/list/:id', function(req, res, next) {
   //let old = db.get('posts').find({id:1}).value();
   //console.log(old.use)
   //old.use.push({name:'ssc',setting:'C33 C2 C19 C23'});
+  // let ssid = db.get('use').filter({sid:4}).value();
+  // console.log('sid:',ssid)
 
-
-  Object.entries(str).forEach(([key, value]) => {
-    console.log("aaa:",key, value);
+  Object.values(str).forEach(items => {
+    console.log("aaa:", str.id);
+    let ssid = db.get('use').filter({sid:str.id}).value();
+    console.log('sid:',ssid)
+   
   });
 
 
@@ -45,6 +49,8 @@ router.get('/list/:id', function(req, res, next) {
     console.log(key, str[key]);
     }
    
+   
+    
     if(key==="Use"){
       console.log("******** 零件用途 ********")
       str[key].forEach(itmeVal=>{
