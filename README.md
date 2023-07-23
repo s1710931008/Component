@@ -30,6 +30,14 @@ module.exports = {
 npm i md5
 ```
 
+# connect-mongo 寫人登入session
+
+```
+npm i connect-mongo
+```
+
+
+
 # moment 日期轉換
 
 參考網站:http://momentjs.cn/docs/#/parsing/
