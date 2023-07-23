@@ -24,13 +24,11 @@ module.exports = {
 }
 ```
 
-## 啟動網頁服務
+# MD5
 
 ```
-npm start
+npm i md5
 ```
-
-
 
 # moment 日期轉換
 
@@ -56,9 +54,14 @@ var day = moment("1995-12-25");
 time: moment(req.body.time).toDate()
 ```
 
+## 啟動網頁服務
+
+```
+npm start
+```
 
 
-# moment 日期轉換
+
 
 
 
