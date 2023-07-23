@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
 });
 
 //退出登录
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   //销毁 session
   req.session.destroy(() => {
     res.render('./account/success', {msg: '退出成功', url: '/login'});
