@@ -88,13 +88,16 @@ router.get('/account/:id', (req, res) => {
 router.patch('/account/:id', (req, res) => {
   //获取 id 参数值
   let { id } = req.params;
+  const paramss = [req.body.title,req.params.id];
+  console.log(paramss)
   //更新数据库
-  AccountModel.updateOne({ _id: id },req.body)
-    .then(() => {
-      console.log('修改成功')
+  AccountModel.updateOne({ _id: id }, req.body)
+    .then((data) => {
+      console.log('修改成功',data)
+      // res.json(data)
     });
 
-    //再次查询数据库 获取单条数据
+    // 再次查询数据库 获取单条数据
     AccountModel.findById(id).then((data) => {
       console.log(data); 
       //成功响应
