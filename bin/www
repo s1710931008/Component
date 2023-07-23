@@ -5,10 +5,15 @@
  */
 
 // 導入db 
-// const db = require('../db/db')
+const mongoose = require('mongoose');
+//导入 配置文件
+const {DBHOST, DBPORT, DBNAME} = require('../config/config.js');
 
-//調用db
-// db(()=>{
+//3. 连接 mongodb 服务数据库的名称
+mongoose.connect(`mongodb://${DBHOST}:${DBPORT}/${DBNAME}`,{
+})
+.then(db => console.log('已連接 mongodb 服務!'))
+.catch(err => console.log(err));
 
 var app = require('../app');
 var debug = require('debug')('myapp:server');

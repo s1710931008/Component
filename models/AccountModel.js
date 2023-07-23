@@ -1,8 +1,8 @@
 //导入 mongoose
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/myproject')
-  .then(() => console.log('Connected!'));
+// mongoose.connect('mongodb://127.0.0.1:27017/myproject')
+//   .then(() => console.log('Connected!'));
 //创建文档的结构对象
 //设置集合中文档的属性以及属性值的类型
 const AccountModel = mongoose.model('accounts', { 
