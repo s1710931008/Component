@@ -36,7 +36,7 @@ router.get('/create',checkLoginMiddleware, function(req, res, next) {
 });
 
 //新增記錄
-router.post('/', checkLoginMiddleware,(req, res) => {
+router.post('/',(req, res) => {
   // 新增資料資料庫
   AccountModel.create({ 
     ...req.body,
