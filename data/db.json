@@ -1,7 +1,43 @@
 {
   "Component": [
     {
-      "id":1,
+      "Mouser_Number": "2",
+      "type": "電容",
+      "format": "2",
+      "Voltage": "2",
+      "Case_Code_in": "2",
+      "Tolerance": "2",
+      "Quantity": 2
+    },
+    {
+      "Mouser_Number": "1",
+      "type": "電容",
+      "format": "1",
+      "Voltage": "1",
+      "Case_Code_in": "1",
+      "Tolerance": "1",
+      "Quantity": 1
+    },
+    {
+      "Mouser_Number": "1",
+      "type": "電容",
+      "format": "1",
+      "Voltage": "1",
+      "Case_Code_in": "1",
+      "Tolerance": "1",
+      "Quantity": 1
+    },
+    {
+      "Mouser_Number": "1",
+      "type": "電容",
+      "format": "1",
+      "Voltage": "1",
+      "Case_Code_in": "1",
+      "Tolerance": "1",
+      "Quantity": 1
+    },
+    {
+      "id": 1,
       "Mouser_Number": "1零件編號",
       "type": "電容",
       "format": "規格 ",
@@ -11,7 +47,7 @@
       "Quantity": 100
     },
     {
-      "id":2,
+      "id": 2,
       "Mouser_Number": "零件編號",
       "type": "電阻",
       "format": "規格",
@@ -21,7 +57,7 @@
       "Quantity": 1000
     },
     {
-      "id":3,
+      "id": 3,
       "Mouser_Number": "3",
       "type": "電阻",
       "format": "3",
@@ -31,7 +67,7 @@
       "Quantity": "3"
     },
     {
-      "id":4,
+      "id": 4,
       "Mouser_Number": "81-GCJ188R71C104KA1D",
       "type": "電容",
       "format": "100nF",
@@ -41,7 +77,7 @@
       "Quantity": 100
     },
     {
-      "id":5,
+      "id": 5,
       "Mouser_Number": "GRM1555C1H120JA01D",
       "type": "電容",
       "format": "12pF",
@@ -51,12 +87,18 @@
       "Quantity": 100
     }
   ],
-  "use":[
+  "use": [
     {
-      "id":1,"sid":4,"name":"SSC","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
+      "id": 1,
+      "sid": 4,
+      "name": "SSC",
+      "setting": "C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
     },
     {
-      "id":2,"sid":4,"name":"SubG","setting":"C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
+      "id": 2,
+      "sid": 4,
+      "name": "SubG",
+      "setting": "C1 C3 C4 C5 C6 C9 C12 C15 C16 C20"
     }
   ]
 }
