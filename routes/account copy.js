@@ -16,6 +16,18 @@ const db = low(adapter)
 router.get('/', function(req, res, next) {
   //獲取所有帳單訊息
   //批量讀取
+  AccountModel.create({ 
+    ...req.body,
+    //修改 time 属性的值
+    time: moment(req.body.time).toDate()
+  })
+  .then(() => { 
+    //成功提醒
+    res.render('./account/success', {msg: '添加成功哦~~~', url: '/account'});
+    console.log('新增成功'); 
+    // mongoose.disconnect(); 
+  });
+  
   AccountModel.find().sort({time: -1}).then((data) => {
     // console.log(data); 
     res.render('./account/list', {accounts: data,moment: moment});
