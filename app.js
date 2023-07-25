@@ -6,9 +6,44 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+<<<<<<< HEAD
 
 var app = express();
 
+=======
+var accountRouter = require('./routes/account');
+var compRouter = require('./routes/comp/comp');
+//导入 account 接口路由文件
+const accountApiRouter = require('./routes/api/account');
+//註冊
+var authRouter = require('./routes/auth');
+
+const MongoStore = require('connect-mongo');
+//导入 配置文件
+const {DBHOST, DBPORT, DBNAME} = require('./config/config.js');
+
+//导入 express-session 
+const session = require("express-session");
+
+var app = express();
+
+app.use(session({
+  name: 'sid',   //设置cookie的name，默认值是：connect.sid
+  secret: 'atguigu', //参与加密的字符串（又称签名）  加盐
+  saveUninitialized: false, //是否为每次请求都设置一个cookie用来存储session的id
+  resave: true,  //是否在每次请求时重新保存session  20 分钟    4:00  4:20
+  store: MongoStore.create({
+    //記錄寫入 myproject.sessions
+    mongoUrl: `mongodb://${DBHOST}:${DBPORT}/${DBNAME}`, //数据库的连接配置
+    autoRemove : 'native',  // 默認'
+  }),
+  cookie: {
+    httpOnly: true, // 开启后前端无法通过 JS 操作
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 这一条 是控制 sessionID 的过期时间的！！！
+  },
+}))
+
+>>>>>>> c103a47d5f902eb5510b5e6aade10106b377c4c1
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,10 +56,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+<<<<<<< HEAD
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+=======
+app.use('/account', accountRouter);
+app.use('/api', accountApiRouter);
+app.use('/comp',compRouter);
+
+//註冊
+app.use('/', authRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  // next(createError(404));
+  res.render('404')
+>>>>>>> c103a47d5f902eb5510b5e6aade10106b377c4c1
 });
 
 // error handler

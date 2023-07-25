@@ -4,6 +4,22 @@
  * Module dependencies.
  */
 
+<<<<<<< HEAD
+=======
+// 導入db 
+const mongoose = require('mongoose');
+//导入 配置文件
+const {DBHOST, DBPORT, DBNAME} = require('../config/config.js');
+
+//3. 连接 mongodb 服务数据库的名称
+mongoose.connect(`mongodb://${DBHOST}:${DBPORT}/${DBNAME}`,{
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+})
+.then(db => console.log('已連接 mongodb 服務!'))
+.catch(err => console.log(err));
+
+>>>>>>> c103a47d5f902eb5510b5e6aade10106b377c4c1
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
@@ -24,8 +40,15 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+<<<<<<< HEAD
 
 server.listen(port);
+=======
+ server.listen(port,()=>{
+  console.log("Express server listening on port http://127.0.0.1:" + port);
+});
+// server.listen(port);
+>>>>>>> c103a47d5f902eb5510b5e6aade10106b377c4c1
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -88,3 +111,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+<<<<<<< HEAD
+=======
+// })
+>>>>>>> c103a47d5f902eb5510b5e6aade10106b377c4c1
