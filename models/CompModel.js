@@ -4,17 +4,26 @@ const userSchema = mongoose.Schema(
     {
         Mouser_Number: {
             type: String,
-            require: true
+            require: true //如果該值不為 null 或未定義
         },
         ctype: {
             type: String,
+            // unique: true //不能有重複
+            // required: [true, "ctype required."],
+
+            // dateCreated: {
+            //   type: Date,
+            //   default: Date.now,
+            // },
         },
         format: {
             type: String,
+            // default: -1 預設值
           },
           //4
           Voltage: {
             type: String 
+            // trim: true,  將刪除前後和空格
           },
           //5
           Case_Code_in: {
