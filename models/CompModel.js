@@ -6,13 +6,11 @@ const mongoose = require('mongoose');
 //创建文档的结构对象
 //设置集合中文档的属性以及属性值的类型
 const CompModel = mongoose.model('component', { 
-// let AccountSchema = new mongoose.Schema({
   //标题
   Mouser_Number: {
     type: String,
     required: true
   },
-  //时间
   Date: Date,
   //类型
   type: {
