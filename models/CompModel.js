@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema(
             type: String,
             require: true //如果該值不為 null 或未定義
         },
-        ctype: {
+        Type: {
             type: String,
             // unique: true //不能有重複
             // required: [true, "ctype required."],
@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema(
             //   default: Date.now,
             // },
         },
-        format: {
+        Format: {
             type: String,
             // default: -1 預設值
           },
