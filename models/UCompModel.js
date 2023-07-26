@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
     {
-        Mouser_Number: {
+      sid: {
             type: String,
             require: true //如果該值不為 null 或未定義
         },
-        Type: {
+        name: {
             type: String,
             // unique: true //不能有重複
             // required: [true, "ctype required."],
@@ -16,26 +16,9 @@ const userSchema = mongoose.Schema(
             //   default: Date.now,
             // },
         },
-        Format: {
+        setting: {
             type: String,
             // default: -1 預設值
-          },
-          //4
-          Voltage: {
-            type: String 
-            // trim: true,  將刪除前後和尾隨空格
-          },
-          //5
-          Case_Code_in: {
-            type: String 
-          },
-          //6
-          Tolerance: {
-            type: String 
-          },
-          //7
-          Quantity: {
-            type: Number 
           },
     },
     {
