@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema(
           //4
           Voltage: {
             type: String 
-            // trim: true,  將刪除前後和空格
+            // trim: true,  將刪除前後和尾隨空格
           },
           //5
           Case_Code_in: {

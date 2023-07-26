@@ -3,7 +3,7 @@ var router = express.Router();
 
 const moment = require('moment');
 const CompModel = require('../../models/CompModel');
-
+const Acomp = require('../../models/Acomp');
 
 //lowdb 導入
 /*
@@ -23,6 +23,12 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
   //   return res.redirect('/login')
   // }
   //獲取所有帳單訊息
+  Acomp.find({name:'kenny'}).sort({time: -1}).then((data) => {
+    // console.log(data); 
+    console.log(data)
+    // mongoose.disconnect(); 
+  })
+
   CompModel.find().sort({time: -1}).then((data) => {
     // console.log(data); 
     res.render('./comp/index', {str: data,moment: moment});
