@@ -82,11 +82,11 @@ router.get('/list/:id' ,function(req, res, next) {
     // res.render('./comp/list', {str: data , str1:datav});
     
     // mongoose.disconnect(); 
-      console.log(data1[0].Mouser_Number)
+      // console.log(data1[0].Mouser_Number)
 
       Acomp.find({ sid: data1[0].Mouser_Number}).sort({time: -1}).then((data2) => {
         // console.log(data); 
-        // console.log(data)
+        console.log(data2)
         // mongoose.disconnect(); 
         // res.json({data1 , data2})
         res.render('./comp/list', {str1:data1 , str2:data2});

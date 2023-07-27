@@ -15,18 +15,24 @@
         </tr>
       </thead>
       <tbody>
-        <% str1.forEach(itmes => { %>
+        <!-- <% str1.forEach(itmes => { %> -->
         <tr>
-          <td><%= itmes.Mouser_Number %></td>
-          <td><%= itmes.Type %></td>
+          <td>Mouser_Number</td>
+          <td><%= str1[0].Mouser_Number %></td>
+       </tr>
+       <tr>
+        <td>Mouser_Number</td>
+        <td><%= str1[0].Format %></td>
+     </tr>
+          <!-- <td><%= itmes.Type %></td>
           <td><%= itmes.Format %></td>
           <td><%= itmes.Voltage %></td>
           <td><%= itmes.Case_Code_in %></td>
           <td><%= itmes.Tolerance %></td>
-          <td><%= itmes.Quantity %></td>
+          <td><%= itmes.Quantity %></td> -->
           <td><a href="/list/<%= itmes.Mouser_Number %>">查看</a></td>
-        </tr>
-        <% })%>
+
+        <!-- <% })%> -->
       </tbody>
 
 
@@ -44,7 +50,12 @@
               </tr>
             </thead>
             <tbody>
-
+              <% str2.forEach(itmes => { %>
+              <tr>
+                <td><%= itmes.name %></td>
+                <td><%= itmes.setting %></td>
+              </tr>
+              <% })%>
             </tbody>
 
     </table>
