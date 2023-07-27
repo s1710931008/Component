@@ -23,7 +23,7 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
   //   return res.redirect('/login')
   // }
   //獲取所有帳單訊息
-  Acomp.find({name:'kenny'}).sort({time: -1}).then((data) => {
+  Acomp.find({name:'kenny'}).then((data) => {
     // console.log(data); 
     console.log(data)
     // mongoose.disconnect(); 
