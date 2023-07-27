@@ -68,5 +68,32 @@ router.get('/:id', checkLoginMiddleware, (req, res) => {
   })
 });
 
+router.get('/list/:id' ,function(req, res, next) {
+  let id = req.params.id;
+  //判斷登入是否有成功
+  // if(!req.session.username){
+  //   return res.redirect('/login')
+  // }
+  //獲取所有帳單訊息
+
+
+  CompModel.find({ Mouser_Number:'123456' }).sort({time: -1}).then((data1) => {
+    // console.log(data); 
+    // res.render('./comp/list', {str: data , str1:datav});
+    
+    // mongoose.disconnect(); 
+      console.log(data1[0].Mouser_Number)
+
+      Acomp.find({ sid: data1[0].Mouser_Number}).sort({time: -1}).then((data2) => {
+        // console.log(data); 
+        // console.log(data)
+        // mongoose.disconnect(); 
+        // res.json({data1 , data2})
+        res.render('./comp/list', {str1:data1 , str2:data2});
+      })
+  
+  })
+
+});
 
 module.exports = router;
