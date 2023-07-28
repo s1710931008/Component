@@ -3,7 +3,7 @@ var router = express.Router();
 
 const moment = require('moment');
 const CompModel = require('../../models/CompModel');
-const Acomp = require('../../models/Acomp');
+const SidComp = require('../../models/sidComp');
 
 //lowdb 導入
 /*
@@ -23,7 +23,7 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
   //   return res.redirect('/login')
   // }
   //獲取所有帳單訊息
-  Acomp.find({name:'kenny'}).then((data) => {
+  SidComp.find({name:'kenny'}).then((data) => {
     // console.log(data); 
     console.log(data)
     // mongoose.disconnect(); 
@@ -76,16 +76,30 @@ router.get('/list/:id' ,function(req, res, next) {
   // }
   //獲取所有帳單訊息
 
+  // SidComp.create({ 
+  //   "sid":"7",
+  //   "name":'123'
+  // })
+  // .then(() => { 
+  //   //成功提醒
+  //   // res.render('./comp/success', {msg: '添加成功哦~~~', url: '/comp'});
+  //   console.log('新增成功'); 
+  //   // mongoose.disconnect(); 
+  // });
 
-  CompModel.find({ Mouser_Number:'123456' }).sort({time: -1}).then((data1) => {
+  CompModel.find({ Mouser_Number: id}).sort({time: -1}).then((data1) => {
+    // SidComp.find().sort({time: -1}).then((data1) => {
     // console.log(data); 
     // res.render('./comp/list', {str: data , str1:datav});
     
     // mongoose.disconnect(); 
       // console.log(data1[0].Mouser_Number)
+      // console.log(data1)
+      // res.json({data1})
 
-      Acomp.find({ sid: data1[0].Mouser_Number}).sort({time: -1}).then((data2) => {
-        // console.log(data); 
+
+      SidComp.find({ Mouser_Number: id}).sort({time: -1}).then((data2) => {
+        console.log(id); 
         console.log(data2)
         // mongoose.disconnect(); 
         // res.json({data1 , data2})
