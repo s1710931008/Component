@@ -144,7 +144,7 @@ router.post('/editsave/list',(req, res) => {
     Mouser_Number: req.body.Mouser_Number,
     name:req.body.name,
     setting:req.body.setting,
-    updatedAt:new Date(),
+    updatedAt: moment(new Date()).toDate(),
   })
   .then(() => {
     res.redirect(`/comp/list/${req.body.Mouser_Number}`)
