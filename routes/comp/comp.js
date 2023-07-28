@@ -149,20 +149,5 @@ router.post('/editsave/list',(req, res) => {
   .then(() => {
     res.redirect(`/comp/list/${req.body.Mouser_Number}`)
   });
-
-
-  // SidComp.create({ 
-  //   ...req.body,
-  //   //修改 time 属性的值
-  //   Date: moment(Date.now()).toDate()
-  // })
-  // .then(() => { 
-  //   //成功提醒
-  //   // res.render('./comp/success', {msg: '添加成功哦~~~', url: '/comp'});
-  //   res.redirect(`/comp/list/${req.body.Mouser_Number}`)
-  //   // console.log('新增成功'); 
-  //   // mongoose.disconnect(); 
-  // });
-
 });
 module.exports = router;
