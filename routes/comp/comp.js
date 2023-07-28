@@ -105,7 +105,7 @@ router.get('/creat/list/:option', function(req, res, next) {
   const { option } = req.params;
   console.log(option)
   // res.json(option)
-  res.render('./comp/createlist', {option:option});
+  res.render('./comp/CreateList', {option:option});
 });
 
 //新增單獨零件位置
@@ -125,4 +125,44 @@ router.post('/create/save',(req, res) => {
   });
 });
 
+
+//修改單獨零件用途
+router.get('/edit/list/:id' ,function(req, res, next) {
+  let id = req.params.id;
+
+  //使用位置
+  SidComp.find({ _id: id}).sort({time: -1}).then((data) => {
+    console.log(data)
+    res.render('./comp/EditList', {str:data});
+  })
+});
+
+router.post('/editsave/list',(req, res) => {
+  // 新增資料資料庫
+  // res.json(req.body)
+  SidComp.updateOne({_id: req.body._id},{
+    Mouser_Number: req.body.Mouser_Number,
+    name:req.body.name,
+    setting:req.body.setting,
+    updatedAt:new Date(),
+  })
+  .then(() => {
+    res.redirect(`/comp/list/${req.body.Mouser_Number}`)
+  });
+
+
+  // SidComp.create({ 
+  //   ...req.body,
+  //   //修改 time 属性的值
+  //   Date: moment(Date.now()).toDate()
+  // })
+  // .then(() => { 
+  //   //成功提醒
+  //   // res.render('./comp/success', {msg: '添加成功哦~~~', url: '/comp'});
+  //   res.redirect(`/comp/list/${req.body.Mouser_Number}`)
+  //   // console.log('新增成功'); 
+  //   // mongoose.disconnect(); 
+  // });
+
+});
 module.exports = router;

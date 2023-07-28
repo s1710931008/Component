@@ -11,7 +11,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col" colspan="3" class="table-primary">電子件規格</th>
+          <th scope="col" colspan="3" class="table-primary">電子件規格 | 修改庫存</th>
         </tr>
       </thead>
       <tbody>
@@ -71,7 +71,7 @@
               <tr>
                 <td><%= itmes.name %></td>
                 <td><%= itmes.setting %></td>
-                <td><a href="/comp/list/del/<%= itmes._id %>">編輯</a> | <a href="/comp/list/del/<%= itmes._id %>/<%= str1[0].Mouser_Number %>">刪除</a></td>
+                <td><a href="/comp/edit/list/<%= itmes._id %>">編輯</a> | <a href="/comp/list/del/<%= itmes._id %>/<%= str1[0].Mouser_Number %>">刪除</a></td>
               </tr>
               <% })%>
             </tbody>
