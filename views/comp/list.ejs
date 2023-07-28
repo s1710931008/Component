@@ -11,35 +11,51 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col" colspan="2" class="table-primary">電子件規格</th>
+          <th scope="col" colspan="3" class="table-primary">電子件規格</th>
         </tr>
       </thead>
       <tbody>
-        <!-- <% str1.forEach(itmes => { %> -->
+        <% str1.forEach(itmes => { %> 
         <tr>
           <td>Mouser_Number</td>
-          <td><%= str1[0].Mouser_Number %></td>
+          <td colspan="2"><%= str1[0].Mouser_Number %></td>
        </tr>
        <tr>
         <td>Mouser_Number</td>
-        <td><%= str1[0].Format %></td>
-     </tr>
-          <!-- <td><%= itmes.Type %></td>
-          <td><%= itmes.Format %></td>
-          <td><%= itmes.Voltage %></td>
-          <td><%= itmes.Case_Code_in %></td>
-          <td><%= itmes.Tolerance %></td>
-          <td><%= itmes.Quantity %></td> -->
-          <td><a href="/list/<%= itmes.Mouser_Number %>">查看</a></td>
-
-        <!-- <% })%> -->
+        <td colspan="2"><%= str1[0].Format %></td>
+      </tr>
+      <tr>
+        <td>Type</td>
+        <td colspan="2"><%= str1[0].Type %></td>
+      </tr>
+      <tr>
+        <td>Format</td>
+        <td colspan="2"><%= str1[0].Format %></td>
+      </tr>
+      <tr>
+        <td>Voltage</td>
+        <td colspan="2"><%= str1[0].Voltage %></td>
+      </tr>
+      <tr>
+        <td>Case_Code_in</td>
+        <td colspan="2"><%= str1[0].Case_Code_in %></td>
+      </tr>
+      <tr>
+        <td>Tolerance</td>
+        <td colspan="2"><%= str1[0].Tolerance %></td>
+      </tr>
+      <tr>
+        <td>庫存</td>
+        <td colspan="2"><%= str1[0].Quantity %></td>
+      </tr>
+       <% })%> 
       </tbody>
 
 
 
           <thead>
             <tr>
-              <th scope="col" colspan="2" class="table-warning">電子件用途</th>
+              <th scope="col" colspan="3" class="table-warning">電子件用途 | <a href="/comp/creat/list/<%= str1[0].Mouser_Number %>">新增用途</a></th>
             </tr>
           </thead>
           <tbody>
@@ -47,6 +63,7 @@
               <tr>
                 <th scope="col" class="table-success">產品名</th>
                 <th scope="col" class="table-success">PCB 位置</th>
+                <th scope="col" class="table-success">操作</th>
               </tr>
             </thead>
             <tbody>
@@ -54,6 +71,7 @@
               <tr>
                 <td><%= itmes.name %></td>
                 <td><%= itmes.setting %></td>
+                <td><a href="/comp/list/del/<%= itmes._id %>">編輯</a> | <a href="/comp/list/del/<%= itmes._id %>/<%= str1[0].Mouser_Number %>">刪除</a></td>
               </tr>
               <% })%>
             </tbody>

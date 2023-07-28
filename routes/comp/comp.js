@@ -68,36 +68,12 @@ router.get('/:id', checkLoginMiddleware, (req, res) => {
   })
 });
 
+//查看單獨零件
 router.get('/list/:id' ,function(req, res, next) {
   let id = req.params.id;
-  //判斷登入是否有成功
-  // if(!req.session.username){
-  //   return res.redirect('/login')
-  // }
-  //獲取所有帳單訊息
-
-  // SidComp.create({ 
-  //   "sid":"7",
-  //   "name":'123'
-  // })
-  // .then(() => { 
-  //   //成功提醒
-  //   // res.render('./comp/success', {msg: '添加成功哦~~~', url: '/comp'});
-  //   console.log('新增成功'); 
-  //   // mongoose.disconnect(); 
-  // });
-
   CompModel.find({ Mouser_Number: id}).sort({time: -1}).then((data1) => {
-    // SidComp.find().sort({time: -1}).then((data1) => {
-    // console.log(data); 
-    // res.render('./comp/list', {str: data , str1:datav});
-    
-    // mongoose.disconnect(); 
-      // console.log(data1[0].Mouser_Number)
-      // console.log(data1)
-      // res.json({data1})
 
-
+      //使用位置
       SidComp.find({ Mouser_Number: id}).sort({time: -1}).then((data2) => {
         console.log(id); 
         console.log(data2)
@@ -108,6 +84,45 @@ router.get('/list/:id' ,function(req, res, next) {
   
   })
 
+});
+
+
+//删除單獨零件位置
+router.get('/list/del/:id/:option', (req, res) => {
+  const { id, option } = req.params;
+  
+  // 刪除資料
+  SidComp.deleteOne({_id: id})
+  .then(() => {console.log('刪除成功')
+  // res.json(id)
+    res.redirect(`/comp/list/${option}`)
+  })
+
+});
+
+//添加單獨零件位置
+router.get('/creat/list/:option', function(req, res, next) {
+  const { option } = req.params;
+  console.log(option)
+  // res.json(option)
+  res.render('./comp/createlist', {option:option});
+});
+
+//新增單獨零件位置
+router.post('/create/save',(req, res) => {
+  // 新增資料資料庫
+  SidComp.create({ 
+    ...req.body,
+    //修改 time 属性的值
+    Date: moment(Date.now()).toDate()
+  })
+  .then(() => { 
+    //成功提醒
+    // res.render('./comp/success', {msg: '添加成功哦~~~', url: '/comp'});
+    res.redirect(`/comp/list/${req.body.Mouser_Number}`)
+    // console.log('新增成功'); 
+    // mongoose.disconnect(); 
+  });
 });
 
 module.exports = router;
