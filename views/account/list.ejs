@@ -11,6 +11,37 @@
     />
     
     <style>
+      .select{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        background: #a8abb8;
+        border-radius: 24px;
+      }
+      .select form{
+        display: flex;
+        justify-content:center;
+      }
+      .select select{
+        padding: 0 20px;
+      }
+      .select .search{
+        padding: 2px 12px;
+        display: flex;
+        width: 500px;
+        height: 40px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .select button{
+        margin: 2px 10px;
+        display: flex;
+        width: 50px;
+        height: 30px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
       ul{
         list-style: none;
       }
@@ -52,6 +83,22 @@
           </div>
           <h2>記帳本</h2>
           <hr />
+          <div class="select">
+            <form action="">
+              <select name="" id="">
+                <option value="請選墿">請選墿</option>
+                <option value="請選墿">請選墿</option>
+                <option value="請選墿">請選墿</option>
+              </select>
+              <div class="search">
+                <input type="text" name="" id="">
+                <div>
+                  <button>確認</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
           <div class="accounts">
             <% accounts.forEach(item => { %>
             <div class="panel <%= item.type===-1 ? 'panel-danger' : 'panel-success'  %>">

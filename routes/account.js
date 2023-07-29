@@ -34,7 +34,7 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
     //總記錄數
     pager.maxNum = data.length;
     //每頁顯示多少條
-    pager.pagerSize=2;
+    pager.pagerSize=5;
     //共多少頁
     pager.pagerCount = parseInt( Math.ceil(pager.maxNum / pager.pagerSize) );
     //修改傳遞數據數量
