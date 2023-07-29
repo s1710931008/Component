@@ -22,10 +22,26 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
   // if(!req.session.username){
   //   return res.redirect('/login')
   // }
+  var pageNum = req.query.page;
+ 
   //獲取所有帳單訊息
   AccountModel.find().sort({time: -1}).then((data) => {
-    // console.log(data); 
-    res.render('./account/list', {accounts: data,moment: moment});
+
+    
+    var pager = {};
+    //預設當頁數
+    pager.pageCurrent = pageNum || 1;
+    //總記錄數
+    pager.maxNum = data.length;
+    //每頁顯示多少條
+    pager.pagerSize=5;
+    //共多少頁
+    pager.pagerCount = parseInt( Math.ceil(pager.maxNum / pager.pagerSize) );
+    //修改傳遞數據數量
+    var dataList = data.slice((pager.pageCurrent-1)* pager.pagerSize , (pager.pageCurrent-1)* pager.pagerSize+pager.pagerSize );
+
+    // console.log(dataList)
+    res.render('./account/list', { accounts: dataList, moment: moment , pager:pager});
     // mongoose.disconnect(); 
   })
 });

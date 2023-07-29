@@ -11,6 +11,18 @@
     />
     
     <style>
+      ul{
+        list-style: none;
+      }
+      .page{
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid #000;
+      }
+      .page ul li{
+        font-size: 12px;
+      }
+
       label {
         font-weight: normal;
       }
@@ -66,6 +78,34 @@
         </div>
       </div>
     </div>
+    <div class="page">
+      <ul class="pagination">
+        <% var prevNum=10; var nextNum=10; %>
+        <li class="disabled"><a href="javascript:;">共 <%= pager.maxNum %> 條</a></li>
+        <li class="disabled"><a href="javascript:;">總 <%= pager.pagerCount %> 頁</a></li>
+        <li class="disabled"><a href="javascript:;">首頁</a></li>
+        <li class="disabled"><a href="javascript:;">上一頁</a></li>
+        
+        <% for(var i=prevNum; i>0; i-- ){%>
+          <% if(parseInt(pager.pageCurrent)-i > 0) {%>
+        <li><a href="/account?page=<%= pager.pageCurrent-i %>"><%= pager.pageCurrent-i %></a></li>
+        <% }} %>
+        
+        <li class="active"><a href="/account?page=<%= pager.pageCurrent %>"><%= pager.pageCurrent %></a></li>
+       
+
+        <% for(vari=1; i<=nextNum; i++){ %>
+          <% if(parseInt(pager.pageCurrent)+i < pager.pagerCount ){%>
+        <li><a href="/account?page=<%= parseInt(pager.pageCurrent)+i+1 %>"><%= parseInt(pager.pageCurrent)+i+1 %></a></li>
+        <% } %>
+
+
+        <% } %>
+        <li class="disabled"><a href="javascript:;">下一頁</a></li>
+        <li class="disabled"><a href="javascript:;">最後尾頁</a></li>
+      </ul>
+    </div>
+
   </body>
   <script>
     //获取所有的 delBtn
