@@ -83,26 +83,50 @@
         <% var prevNum=10; var nextNum=10; %>
         <li class="disabled"><a href="javascript:;">共 <%= pager.maxNum %> 條</a></li>
         <li class="disabled"><a href="javascript:;">總 <%= pager.pagerCount %> 頁</a></li>
-        <li class="disabled"><a href="javascript:;">首頁</a></li>
-        <li class="disabled"><a href="javascript:;">上一頁</a></li>
         
+        <!-- 首頁 -->
+        <% if(pager.maxNum==0){ %>
+         <li class="disabled"><a href="javascript:;">首頁</a></li>
+        <% } else { %>
+          <li ><a href="/account?page=1">首頁</a></li>
+        <% }%>
+        
+        <!-- 判斷上一頁 -->
+        <% if(parseInt(pager.pageCurrent)==1){ %>
+        <li class="disabled"><a href="javescript:;%>">上一頁</a></li>
+        <% }else{ %>
+          <li><a href="/account?page=<%= parseInt(pager.pageCurrent)-1 %>">上一頁</a></li>
+        <% } %>
+        
+        <!-- 顯示頁碼 開始 -->
         <% for(var i=prevNum; i>0; i-- ){%>
           <% if(parseInt(pager.pageCurrent)-i > 0) {%>
         <li><a href="/account?page=<%= pager.pageCurrent-i %>"><%= pager.pageCurrent-i %></a></li>
         <% }} %>
-        
+
+        <!-- 選中顯示頁碼  -->  
         <li class="active"><a href="/account?page=<%= pager.pageCurrent %>"><%= pager.pageCurrent %></a></li>
        
-
+        <!-- 顯示頁碼  -->  
         <% for(vari=1; i<=nextNum; i++){ %>
           <% if(parseInt(pager.pageCurrent)+i < pager.pagerCount ){%>
         <li><a href="/account?page=<%= parseInt(pager.pageCurrent)+i+1 %>"><%= parseInt(pager.pageCurrent)+i+1 %></a></li>
+        <% }} %>
+        
+        <!-- 判斷下一頁 -->
+        <% if(pager.pageCurrent == pager.pagerCount){ %>
+          <li class="disabled"><a href="javescript:;">下一頁</a></li>
+        <% }else{ %>
+          <li><a href="/account?page=<%= parseInt(pager.pageCurrent)+1 %>">下一頁</a></li>
         <% } %>
+        
 
-
-        <% } %>
-        <li class="disabled"><a href="javascript:;">下一頁</a></li>
-        <li class="disabled"><a href="javascript:;">最後尾頁</a></li>
+        <% if(pager.maxNum==0){ %>
+          <li class="disabled"><a href="javescript:; %>">最後尾頁</a></li>
+         <% }else{ %>
+          <li><a href="/account?page=<%=pager.pagerCount %>">最後尾頁</a></li>
+         <% }%>
+        
       </ul>
     </div>
 
