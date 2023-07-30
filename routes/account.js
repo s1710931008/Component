@@ -67,6 +67,29 @@ router.post('/',(req, res) => {
   });
 });
 
+//新增記錄
+router.get('/like',(req, res) => {
+  let id = req.query.like
+  console.log(id)
+    //獲取所有帳單訊息
+  AccountModel.find({title:id}).then((data) => {
+    res.json(data)
+  })
+
+  // 新增資料資料庫
+  // AccountModel.create({ 
+  //   ...req.body,
+  //   //修改 time 属性的值
+  //   time: moment(req.body.time).toDate()
+  // })
+  // .then(() => { 
+  //   //成功提醒
+  //   res.render('./account/success', {msg: '添加成功哦~~~', url: '/account'});
+  //   console.log('新增成功'); 
+  //   // mongoose.disconnect(); 
+  // });
+});
+
 //删除记录
 router.get('/:id', checkLoginMiddleware, (req, res) => {
   //获取 params 的 id 参数

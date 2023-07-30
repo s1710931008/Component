@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var accountRouter = require('./routes/account');
 var compRouter = require('./routes/comp/comp');
+
 //导入 account 接口路由文件
 const accountApiRouter = require('./routes/api/account');
 //註冊

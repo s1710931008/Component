@@ -9,8 +9,76 @@
       href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"
       rel="stylesheet"
     />
-    
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <style>
+
+      .dialog{
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        opacity: .5;
+      }
+
+      .dialog-wrap{
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 999;
+        padding: 20px;
+        width: 600px;
+        /* margin-left: -120px; */
+        background: #fff;
+        border-radius: 24px;
+        transform: translate(-50%,-50%);
+      }
+      .dialog-header{
+        position: relative;
+      }
+      .dialog-header > div{
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      form > div{
+        margin: 20px 0;
+      }
+      .dialog-footer{
+        text-align: right;
+      }
+      .dialog-footer button{
+        padding: 6px 10px;
+        color: #fff;
+        background: #7488e1;
+      }
+      .isDialog{
+        display: none;
+      }
+
+
+      form1{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /* 垂直字中 */
+        transform:  translate(-60% -50%);
+      }
+      /* input 去除樣式 */
+      form1 input{
+        border: 0px;
+        background-color: none;
+        outline: none;
+      }
+
+ 
+
+
+
       .select{
         display: flex;
         justify-content: space-between;
@@ -80,20 +148,23 @@
             <div class="col-xs-12">
               <a href="/account/create" class="btn btn-primary" style="margin-top: 10px;">新增帳單</a>
             </div>
+            <div class="col-xs-12">
+              <button id="addBtn">填加帳單</button>
+            </div>
           </div>
           <h2>記帳本</h2>
           <hr />
           <div class="select">
-            <form action="">
+            <form action="/account/like" method="get">
               <select name="" id="">
                 <option value="請選墿">請選墿</option>
                 <option value="請選墿">請選墿</option>
                 <option value="請選墿">請選墿</option>
               </select>
               <div class="search">
-                <input type="text" name="" id="">
+                <input type="text" name="like" id="">
                 <div>
-                  <button>確認</button>
+                  <button class="search-btn">確認</button>
                 </div>
               </div>
             </form>
@@ -116,6 +187,7 @@
                     aria-hidden="true"
                   ></span>
                 </a>
+                <button class="delete- " alt="del" data-id="<%= item.id %>">刪除</button>
                 </div>
               </div>
             </div>
@@ -177,8 +249,48 @@
       </ul>
     </div>
 
+
+    <div class="dialog isDialog"></div>
+    <div class="dialog-wrap isDialog">
+      <div class="dialog-header">
+        <h3>新增資料</h3>
+        <div class="close glyphicon glyphicon-remove">
+        </div>
+      </div>
+      <form action="/save" method="post">
+         <div>
+           <p>Name:</p> 
+           <p>
+            <input type="text" name="name" id="">
+           </p>
+           <p>Title:</p> 
+           <p>
+            <input type="text" name="Title" id="">
+           </p>
+         </div>
+         <div class="dialog-footer">
+          <button class="cancel">取消</button>
+          <button class="determaine">確定</button>
+         </div>
+      </form>
+    </div>
+
   </body>
   <script>
+    
+   
+    //顯示
+    $('#addBtn').click(function(){
+      alert(1)
+      $('.isDialog').show();
+    })
+    //隱藏
+    $('.close,.cancel').click(function(){
+      $('.isDialog').hide();
+    })
+
+  
+
     //获取所有的 delBtn
     let delBtns = document.querySelectorAll('.delBtn');
   
