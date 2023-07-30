@@ -56,7 +56,7 @@
         color: #fff;
         background: #7488e1;
       }
-      .isDialog{
+      .isDialog,.isDelete{
         display: none;
       }
 
@@ -187,7 +187,7 @@
                     aria-hidden="true"
                   ></span>
                 </a>
-                <button class="delete- " alt="del" data-id="<%= item.id %>">刪除</button>
+                <button id="delete-item" alt="del" data-id="<%= item.id %>">刪除</button>
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@
       </ul>
     </div>
 
-
+    <!-- 小視窗 -->
     <div class="dialog isDialog"></div>
     <div class="dialog-wrap isDialog">
       <div class="dialog-header">
@@ -276,6 +276,19 @@
     </div>
     
 
+    <div class="dialog isDelete"></div>
+    <div class="dialog-wrap isDelete">
+      <div class="dialog-header">
+        <h3>是否確刪除資料</h3>
+        <div class="close glyphicon glyphicon-remove" id="close">
+        </div>
+      </div> 
+         <div class="dialog-footer">
+          <button class="cancel" id="cancel">取消</button>
+          <button class="determineDel">確定</button>
+         </div>
+    </div>
+
     <div id="myDiv"><h2>Let AJAX change this text</h2></div>
     <button id="b01" type="button">Change Content</button>
     <select onChange="submitForm()" name="selectVal" id="">
@@ -289,14 +302,6 @@
       var form = document.getElementById('myform');
       form.submit();
     }
-  //點刪除
-  $('delete-item').click(function(){
-    id = $(this).data('id');
-    $('.isDelete').show();
-  })
-  $('determineDel').click(function(){
-    window.location.href = `/del?id${id}`;
-  })
 
   $(document).ready(function(){
     $("#b01").click(function(){
@@ -306,6 +311,18 @@
   });
    
 $(function(){
+    //點刪除
+    $('#delete-item').click(function(){
+    id = $(this).data('id');
+    $('.isDelete').show();
+    })
+    $('determineDel').click(function(){
+      window.location.href = /account/${id}`;
+    })
+    $('#close,#cancel').click(function(){
+      $('.isDelete').hide();
+    })
+
     //顯示
     $('#addBtn').click(function(){
     $('.isDialog').show();
