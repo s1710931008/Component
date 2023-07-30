@@ -279,7 +279,7 @@
     <div id="myDiv"><h2>Let AJAX change this text</h2></div>
     <button id="b01" type="button">Change Content</button>
     <select onChange="submitForm()" name="selectVal" id="">
-      
+
     </select>
   </body>
   <script>
@@ -289,6 +289,14 @@
       var form = document.getElementById('myform');
       form.submit();
     }
+  //點刪除
+  $('delete-item').click(function(){
+    id = $(this).data('id');
+    $('.isDelete').show();
+  })
+  $('determineDel').click(function(){
+    window.location.href = `/del?id${id}`;
+  })
 
   $(document).ready(function(){
     $("#b01").click(function(){
@@ -297,15 +305,17 @@
     });
   });
    
+$(function(){
     //顯示
     $('#addBtn').click(function(){
-      alert(1)
-      $('.isDialog').show();
+    $('.isDialog').show();
     })
     //隱藏
     $('.close,.cancel').click(function(){
       $('.isDialog').hide();
     })
+
+});
 
   
 
