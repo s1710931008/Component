@@ -187,7 +187,7 @@
                     aria-hidden="true"
                   ></span>
                 </a>
-                <button id="delete-item" alt="del" data-id="<%= item.id %>">刪除</button>
+                <button  class="delete-item" alt="del" data-id="<%= item.id %>">刪除</button>
                 </div>
               </div>
             </div>
@@ -312,12 +312,12 @@
    
 $(function(){
     //點刪除
-    $('#delete-item').click(function(){
+    $('.delete-item').click(function(){
     id = $(this).data('id');
     $('.isDelete').show();
     })
-    $('determineDel').click(function(){
-      window.location.href = /account/${id}`;
+    $('.determineDel').click(function(){
+      window.location.href = `/account/${id}`;
     })
     $('#close,#cancel').click(function(){
       $('.isDelete').hide();
