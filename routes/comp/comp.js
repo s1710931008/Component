@@ -36,6 +36,50 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
   })
 });
 
+
+//查看單獨零件
+router.get('/la' ,function(req, res, next) {
+  // let id = req.params.id;
+  let id ='SSC'
+  var myArray = [];
+  SidComp.aggregate([
+    { $lookup:
+      {
+        from: 'products',
+        localField: 'product_id',
+        foreignField: '_id',
+        as: 'orderdetails'
+      }
+    }.then((data1) => {
+      console.log(data1)
+    })
+
+  SidComp.find({ name:id }).sort({time: -1}).then((data1) => {
+    // console.log(data1[0].Mouser_Number); 
+      //使用位置
+
+  
+      
+      data1.forEach(itmes => {
+        // console.log(itmes.Mouser_Number)
+        CompModel.find({ Mouser_Number: itmes.Mouser_Number}).sort({time: -1}).then((data2) => {
+          // console.log(data2); 
+          // console.log(data1.Mouser_Number)
+          // mongoose.disconnect(); 
+          // res.json({data1 , data2})
+          
+          
+          return myArray.push(data2.Mouser_Number)
+          // res.render('./comp/list', {str1:data1 , str2:data2});
+        })
+        console.log(myArray)
+      })
+      res.json('data2')
+      
+  })
+
+});
+
 //添加記錄
 router.get('/create', function(req, res, next) {
   res.render('./comp/create');
