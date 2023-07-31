@@ -311,14 +311,16 @@
   });
    
 $(function(){
-    //點刪除
+    //點刪除顯示
     $('.delete-item').click(function(){
     id = $(this).data('id');
     $('.isDelete').show();
     })
+    //認認刪除
     $('.determineDel').click(function(){
       window.location.href = `/account/${id}`;
     })
+    //取消
     $('#close,#cancel').click(function(){
       $('.isDelete').hide();
     })
