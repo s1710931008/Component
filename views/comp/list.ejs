@@ -61,7 +61,7 @@
         padding: 6px 10px;
       }
       .isDelete{
-        /* display: none; */
+        display: none;
       }
       .close{
         margin-top: 5px;
@@ -122,7 +122,7 @@
 
           <thead>
             <tr>
-              <th scope="col" colspan="3" class="table-warning">電子件用途 | <a href="/comp/creat/list/<%= str1[0].Mouser_Number %>">新增用途</a></th>
+              <th scope="col" colspan="3" class="table-warning">電子件用途 | <a href="/comp/creat/list/<%= str1[0].Mouser_Number %>"><i class="fa-solid fa-pen-clip"></i> 新增用途</a></th>
             </tr>
           </thead>
           <tbody>
@@ -138,7 +138,7 @@
               <tr>
                 <td><%= itmes.name %></td>
                 <td><%= itmes.setting %></td>
-                <td><a href="/comp/edit/list/<%= itmes._id %>">編輯</a> | <a href="/comp/list/del/<%= itmes._id %>/<%= str1[0].Mouser_Number %>">刪除</a></td>
+                <td><a href="/comp/edit/list/<%= itmes._id %>"><i class="fa-solid fa-pen"></i>編輯</a> | <a href="/comp/list/del/<%= itmes._id %>/<%= str1[0].Mouser_Number %>"><i class="fa-solid fa-x"></i>刪除</a></td>
               </tr>
               <% })%>
             </tbody>
