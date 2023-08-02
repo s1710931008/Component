@@ -37,12 +37,21 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
 });
 
 //添加記錄
+var db;
 router.get('/la', function(req, res, next) {
-  SidComp.find().then((data) => {
-    // console.log(data); 
-    console.log(data)
-    // mongoose.disconnect(); 
+  SidComp.find().then((data,str) => {
+    // global.db=data
+    db=data
+    // console.log(gv1)
+    
   })
+  
+  //等待間時
+  // setTimeout(function(){
+  //   console.log(db); 
+  // }, 200);
+  // await console.log(data)
+  // console.log(global.db); 
   res.json('hi')
 });
 
