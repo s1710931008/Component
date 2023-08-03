@@ -1,3 +1,17 @@
+/// Promise 特性
+let flipCoin = ()=>{
+    return new Promise((resolve,rejects)=>{
+        setTimeout(()=>{
+            if(Math.random()>0.5){
+                resolve('上課喔')
+            }else{
+                rejects('翹課!')
+            }
+        },300);
+    });
+}
+
+
 // async / await 版
 let main = async () => {
     // 使用 try-catch 做錯誤處理
