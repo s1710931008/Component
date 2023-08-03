@@ -14,7 +14,8 @@ const db = low(adapter)
 */
 
  //判斷登入是否有成功 中間鍵
-let checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware')
+let checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware');
+const { object } = require('joi');
 //記帳本的列表
 router.get('/', checkLoginMiddleware,function(req, res, next) {
   
@@ -38,12 +39,57 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
 
 //添加記錄
 router.get('/la', function(req, res, next) {
-  SidComp.find().then((data) => {
-    // console.log(data); 
-    console.log(data)
-    // mongoose.disconnect(); 
+  var out=[];
+
+   SidComp.find({name:'SSC'}).then((data) => {
+
+      data.forEach(item => {
+      Vkey=item.Mouser_Number
+       
+      CompModel.find({ Mouser_Number: Vkey}).sort({time: -1}).then((data1) => {
+         out.push(data1[0]);
+
+      })
+    
+    });
+
+    setTimeout(() => {
+      console.log(out)
+      res.json(out)
+    }, 10)
+   
   })
-  res.json('hi')
+  // console.log(out)
+  // res.json('data1')
+});
+
+//添加記錄
+
+
+
+var out=[];
+const foo = async function (req, res) {
+  var result_data = await SidComp.find({name:'SSC'}).then((data) => {
+ 
+    data.forEach(item => {
+    Vkey=item.Mouser_Number
+     
+       CompModel.find({ Mouser_Number: Vkey}).sort({time: -1}).then((data1) => {
+       out.push(data1[0]);
+  
+   })
+  })
+  result_data.DataA = out
+  
+  // return res.status(200).json({message: "success"})
+})
+};
+
+
+router.get('/lb', function(req, res, next) {
+  foo()
+  console.log(result_data.DataA )
+  return res.status(200).json({message: "success"})
 });
 
 //添加記錄
