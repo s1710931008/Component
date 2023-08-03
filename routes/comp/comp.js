@@ -38,6 +38,7 @@ router.get('/', checkLoginMiddleware,function(req, res, next) {
 });
 
 //添加記錄
+var db;
 router.get('/la', function(req, res, next) {
   var out=[];
 
@@ -63,39 +64,6 @@ router.get('/la', function(req, res, next) {
   // res.json('data1')
 });
 
-//添加記錄
-
-
-
-var out=[];
-const foo = async function (req, res) {
-  var result_data = await SidComp.find({name:'SSC'}).then((data) => {
- 
-    data.forEach(item => {
-    Vkey=item.Mouser_Number
-     
-       CompModel.find({ Mouser_Number: Vkey}).sort({time: -1}).then((data1) => {
-       out.push(data1[0]);
-  
-   })
-  })
-  result_data.DataA = out
-  
-  // return res.status(200).json({message: "success"})
-})
-};
-
-
-router.get('/lb', function(req, res, next) {
-  foo()
-  console.log(result_data.DataA )
-  return res.status(200).json({message: "success"})
-});
-
-//添加記錄
-router.get('/create', function(req, res, next) {
-  res.render('./comp/create');
-});
 
 //新增記錄
 router.post('/save',(req, res) => {
