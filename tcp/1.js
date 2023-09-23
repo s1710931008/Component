@@ -43,12 +43,35 @@ server.on('connection',clientSocket=>{
                 })
                 break;
             case types.p2p:
+                const user = users.find(item => item.nickname == data.nickname)
+                if (!user){ //如果何用者不存在或離線就發消息
+                    return clientSocket.write(JSON.stringify({
+                        type: types.p2p,
+                        success: false,
+                        message: '該用戶不存在'
+                    }))
+                }
+                //發給單給用戶
+                user.write(JSON.stringify({
+                    type: types.p2p,
+                    success: true,
+                    nickname: clientSocket.nickname,
+                    message: data.message
+                }))
                 break;
             default:
                 break;
         }
     })
 
+    //監聽客戶中斷
+    clientSocket.on('end',()=>{
+        console.log('用戶離開了')
+        const index = users.findIndex(user => user.nickname === clientSocket.nickname)
+        if(index !== -1) { //從後面開始移除
+            users.splice(index,1)
+        }
+    })
 })
 
 server.listen(3000,()=> console.log('Server runing 127.0.0.1 3000'))

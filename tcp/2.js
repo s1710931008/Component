@@ -25,6 +25,17 @@ clinet.on('connect',()=>{
             }))
         }
 
+        //正則表他達式
+        const matches = /^@(\w+)\s(.+)$/.exec(data)
+
+        if(matches) { //妹果本次消息符合 @xxxx xxx 格式
+            return clinet.write(JSON.stringify({
+                type: types.p2p,
+                nickname: matches[1],
+                message: matches[2]
+            }))
+        }
+
         //群發
         clinet.write(JSON.stringify({
             type: types.broadcast,
@@ -51,6 +62,11 @@ clinet.on('data',data=>{
             console.log(`${data.nickname}:${data.message}`)
                 break;        
         case types.p2p:
+            if(!data.success){ //如果發送失敗
+                return console.log(`發送失敗:${data.message}`)
+            }
+            // 發送成功
+            console.log(`${data.nickname} 對你說 ${data.message}`)
                 break;    
         default:
             console.log('未知的消息')
