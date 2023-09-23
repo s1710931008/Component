@@ -60,14 +60,17 @@ clinet.on('data',data=>{
             break;
         case types.broadcast:
             console.log(`${data.nickname}:${data.message}`)
-                break;        
+            break;        
         case types.p2p:
             if(!data.success){ //如果發送失敗
                 return console.log(`發送失敗:${data.message}`)
             }
             // 發送成功
             console.log(`${data.nickname} 對你說 ${data.message}`)
-                break;    
+            break;  
+        case types.log:
+            console.log(data.message)
+            break;
         default:
             console.log('未知的消息')
             break;

@@ -32,6 +32,15 @@ server.on('connection',clientSocket=>{
                     nickname: data.nickname,
                     sumUser: users.length
                 }))
+                //用戶增加是的log,非當登入用戶
+                users.forEach(user => {
+                    if(user !== clientSocket){ //如果不是當前登入用戶時
+                        user.write(JSON.stringify({
+                            type: types.log,
+                            message: `${data.nickname} 進入聊天室,當前用戶數:${users.length}`
+                        }))
+                    }
+                })
                 break;
             case types.broadcast:
                 users.forEach(item=>{
@@ -66,10 +75,17 @@ server.on('connection',clientSocket=>{
 
     //監聽客戶中斷
     clientSocket.on('end',()=>{
-        console.log('用戶離開了')
         const index = users.findIndex(user => user.nickname === clientSocket.nickname)
         if(index !== -1) { //從後面開始移除
+            const offlineUser = users[index] //刪除前先取出
             users.splice(index,1)
+            //廣播通知用戶離開
+            users.forEach(user=>{
+                user.write(JSON.stringify({
+                    type: types.log,
+                    message: `${offlineUser.nickname} 離開天室,當前用戶數:${users.length}`
+                }))
+            })
         }
     })
 })
