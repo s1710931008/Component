@@ -64,6 +64,38 @@ router.get('/la', function(req, res, next) {
   // res.json('data1')
 });
 
+var db;
+const {MongoClient} = require('mongodb');
+const clinet = new MongoClient('mongodb://127.0.0.1:27017')
+
+router.get('/lb', function(req, res, next) {
+ 
+
+  clinet.connect()
+  
+  .then(async()=>{
+    const db = clinet.db('myproject')
+    const coll = db.collection('sidcomp')
+    const user = await coll.find().toArray()
+    return user
+  })
+
+  .then(async(user)=>{
+    // console.log(user)
+    const db = clinet.db('myproject')
+    const coll2 = db.collection('components')
+    const user2 = await coll2.find().toArray()
+    return (user,user2)
+  })
+  .then(data1,data2=>{
+    // console.log(data1,data2)
+    data1.forEach(item=>{
+      console.log(item.Mouser_Number)
+    })
+  })
+    
+  res.json('user')
+});
 
 //新增記錄
 router.post('/save',(req, res) => {
