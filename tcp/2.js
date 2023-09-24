@@ -66,7 +66,7 @@ clinet.on('data',data=>{
                 return console.log(`發送失敗:${data.message}`)
             }
             // 發送成功
-            console.log(`${data.nickname} 對你說 ${data.message}`)
+            console.log(`${data.nickname} 對你說: ${data.message}`)
             break;  
         case types.log:
             console.log(data.message)
