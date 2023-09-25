@@ -1,47 +1,47 @@
-//导入 mongoose
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://127.0.0.1:27017/myproject')
-//   .then(() => console.log('Connected!'));
-//创建文档的结构对象
-//设置集合中文档的属性以及属性值的类型
-const CompModel = mongoose.model('component', { 
-// let AccountSchema = new mongoose.Schema({
-  //标题
-  Mouser_Number: {
-    type: String,
-    required: true
-  },
-  //时间
-  Date: Date,
-  //类型
-  type: {
-    type: String,
-  },
-  //金额
-  format: {
-    type: String,
-  },
-  //备注
-  Voltage: {
-    type: String 
-  },
-  //备注
-  Case_Code_in: {
-    type: String 
-  },
-  //备注
-  Tolerance: {
-    type: String 
-  },
-  //备注
-  Quantity: {
-    type: Number 
-  }
-});
+const userSchema = mongoose.Schema(
+    {
+        Mouser_Number: {
+            type: String,
+            require: true //如果該值不為 null 或未定義
+        },
+        Type: {
+            type: String,
+            // unique: true //不能有重複
+            // required: [true, "ctype required."],
 
-//创建模型对象  对文档操作的封装对象
-// let AccountModel = mongoose.model('accounts', AccountSchema);
+            // dateCreated: {
+            //   type: Date,
+            //   default: Date.now,
+            // },
+        },
+        Format: {
+            type: String,
+            // default: -1 預設值
+          },
+          //4
+          Voltage: {
+            type: String 
+            // trim: true,  將刪除前後和尾隨空格
+          },
+          //5
+          Case_Code_in: {
+            type: String 
+          },
+          //6
+          Tolerance: {
+            type: String 
+          },
+          //7
+          Quantity: {
+            type: Number 
+          },
+    },
+    {
+        timestamps: true,
+        versionKey: false, // __v  Here You have to add.  
+    }
+)
 
-//暴露模型对象
-module.exports = CompModel;
+module.exports = mongoose.model('components', userSchema)

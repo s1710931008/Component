@@ -9,8 +9,119 @@
       href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"
       rel="stylesheet"
     />
-    
+    <script
+  src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <style>
+
+      .dialog{
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        opacity: .5;
+      }
+
+      .dialog-wrap{
+        position:absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 999;
+        padding: 20px;
+        width: 600px;
+        /* margin-left: -120px; */
+        background: #fff;
+        border-radius: 24px;
+        transform: translate(-50%,-50%);
+      }
+      .dialog-header{
+        position: relative;
+      }
+      .dialog-header > div{
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      form > div{
+        margin: 20px 0;
+      }
+      .dialog-footer{
+        text-align: right;
+      }
+      .dialog-footer button{
+        padding: 6px 10px;
+        color: #fff;
+        background: #7488e1;
+      }
+      .isDialog,.isDelete{
+        display: none;
+      }
+
+
+      form1{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        /* 垂直字中 */
+        transform:  translate(-60% -50%);
+      }
+      /* input 去除樣式 */
+      form1 input{
+        border: 0px;
+        background-color: none;
+        outline: none;
+      }
+
+ 
+
+
+
+      .select{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 30px;
+        background: #a8abb8;
+        border-radius: 24px;
+      }
+      .select form{
+        display: flex;
+        justify-content:center;
+      }
+      .select select{
+        padding: 0 20px;
+      }
+      .select .search{
+        padding: 2px 12px;
+        display: flex;
+        width: 500px;
+        height: 40px;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .select button{
+        margin: 2px 10px;
+        display: flex;
+        width: 50px;
+        height: 30px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      ul{
+        list-style: none;
+      }
+      .page{
+        width: 100%;
+        padding: 20px;
+        border-top: 1px solid #000;
+      }
+      .page ul li{
+        font-size: 12px;
+      }
+
       label {
         font-weight: normal;
       }
@@ -37,9 +148,28 @@
             <div class="col-xs-12">
               <a href="/account/create" class="btn btn-primary" style="margin-top: 10px;">新增帳單</a>
             </div>
+            <div class="col-xs-12">
+              <button id="addBtn">填加帳單</button>
+            </div>
           </div>
           <h2>記帳本</h2>
           <hr />
+          <div class="select">
+            <form action="/account/like" method="get">
+              <select name="" id="">
+                <option value="請選墿">請選墿</option>
+                <option value="請選墿">請選墿</option>
+                <option value="請選墿">請選墿</option>
+              </select>
+              <div class="search">
+                <input type="text" name="like" id="">
+                <div>
+                  <button class="search-btn">確認</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
           <div class="accounts">
             <% accounts.forEach(item => { %>
             <div class="panel <%= item.type===-1 ? 'panel-danger' : 'panel-success'  %>">
@@ -57,6 +187,7 @@
                     aria-hidden="true"
                   ></span>
                 </a>
+                <button  class="delete-item" alt="del" data-id="<%= item.id %>">刪除</button>
                 </div>
               </div>
             </div>
@@ -66,8 +197,147 @@
         </div>
       </div>
     </div>
+    <div class="page">
+      <ul class="pagination">
+        <% var prevNum=10; var nextNum=10; %>
+        <li class="disabled"><a href="javascript:;">共 <%= pager.maxNum %> 條</a></li>
+        <li class="disabled"><a href="javascript:;">總 <%= pager.pagerCount %> 頁</a></li>
+        
+        <!-- 首頁 -->
+        <% if(pager.maxNum==0){ %>
+         <li class="disabled"><a href="javascript:;">首頁</a></li>
+        <% } else { %>
+          <li ><a href="/account?page=1">首頁</a></li>
+        <% }%>
+        
+        <!-- 判斷上一頁 -->
+        <% if(parseInt(pager.pageCurrent)==1){ %>
+        <li class="disabled"><a href="javescript:;%>">上一頁</a></li>
+        <% }else{ %>
+          <li><a href="/account?page=<%= parseInt(pager.pageCurrent)-1 %>">上一頁</a></li>
+        <% } %>
+        
+        <!-- 顯示頁碼 開始 -->
+        <% for(var i=prevNum; i>0; i-- ){%>
+          <% if(parseInt(pager.pageCurrent)-i > 0) {%>
+        <li><a href="/account?page=<%= pager.pageCurrent-i %>"><%= pager.pageCurrent-i %></a></li>
+        <% }} %>
+
+        <!-- 選中顯示頁碼  -->  
+        <li class="active"><a href="/account?page=<%= pager.pageCurrent %>"><%= pager.pageCurrent %></a></li>
+       
+        <!-- 顯示頁碼  -->  
+        <% for(vari=1; i<=nextNum; i++){ %>
+          <% if(parseInt(pager.pageCurrent)+i < pager.pagerCount ){%>
+        <li><a href="/account?page=<%= parseInt(pager.pageCurrent)+i+1 %>"><%= parseInt(pager.pageCurrent)+i+1 %></a></li>
+        <% }} %>
+        
+        <!-- 判斷下一頁 -->
+        <% if(pager.pageCurrent == pager.pagerCount){ %>
+          <li class="disabled"><a href="javescript:;">下一頁</a></li>
+        <% }else{ %>
+          <li><a href="/account?page=<%= parseInt(pager.pageCurrent)+1 %>">下一頁</a></li>
+        <% } %>
+        
+
+        <% if(pager.maxNum==0){ %>
+          <li class="disabled"><a href="javescript:; %>">最後尾頁</a></li>
+         <% }else{ %>
+          <li><a href="/account?page=<%=pager.pagerCount %>">最後尾頁</a></li>
+         <% }%>
+        
+      </ul>
+    </div>
+
+    <!-- 小視窗 -->
+    <div class="dialog isDialog"></div>
+    <div class="dialog-wrap isDialog">
+      <div class="dialog-header">
+        <h3>新增資料</h3>
+        <div class="close glyphicon glyphicon-remove">
+        </div>
+      </div>
+      <form action="/save" method="post">
+         <div>
+           <p>Name:</p> 
+           <p>
+            <input type="text" name="name" id="">
+           </p>
+           <p>Title:</p> 
+           <p>
+            <input type="text" name="Title" id="">
+           </p>
+         </div>
+         <div class="dialog-footer">
+          <button class="cancel">取消</button>
+          <button class="determaine">確定</button>
+         </div>
+      </form>
+    </div>
+    
+
+    <div class="dialog isDelete"></div>
+    <div class="dialog-wrap isDelete">
+      <div class="dialog-header">
+        <h3>是否確刪除資料</h3>
+        <div class="close glyphicon glyphicon-remove" id="close">
+        </div>
+      </div> 
+         <div class="dialog-footer">
+          <button class="cancel" id="cancel">取消</button>
+          <button class="determineDel">確定</button>
+         </div>
+    </div>
+
+    <div id="myDiv"><h2>Let AJAX change this text</h2></div>
+    <button id="b01" type="button">Change Content</button>
+    <select onChange="submitForm()" name="selectVal" id="">
+
+    </select>
   </body>
   <script>
+  
+  //触發提交表單
+    function submitForm(){
+      var form = document.getElementById('myform');
+      form.submit();
+    }
+
+  $(document).ready(function(){
+    $("#b01").click(function(){
+    htmlobj=$.ajax({url:"http://127.0.0.1:3000/api/account/",async:false});
+    $("#myDiv").html(htmlobj.responseText);
+    });
+  });
+   
+$(function(){
+    //點刪除顯示
+    $('.delete-item').click(function(){
+    id = $(this).data('id');
+    $('.isDelete').show();
+    })
+    //認認刪除
+    $('.determineDel').click(function(){
+      window.location.href = `/account/${id}`;
+    })
+    //取消
+    $('#close,#cancel').click(function(){
+      $('.isDelete').hide();
+    })
+
+    //顯示
+    $('#addBtn').click(function(){
+    $('.isDialog').show();
+    })
+    //隱藏
+    $('.close,.cancel').click(function(){
+      $('.isDialog').hide();
+    })
+
+});
+
+  
+
     //获取所有的 delBtn
     let delBtns = document.querySelectorAll('.delBtn');
   
